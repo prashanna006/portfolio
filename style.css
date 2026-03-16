@@ -105,19 +105,17 @@ nav {
 #accent-picker {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 1px solid var(--border2);
-  border-radius: 3px;
-  background: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
   cursor: pointer;
   padding: 0;
-  transition: border-color 0.2s;
+  background: none;
 }
-#accent-picker:hover { border-color: var(--amber); }
-#accent-picker::-webkit-color-swatch-wrapper { padding: 0; }
-#accent-picker::-webkit-color-swatch { border: none; border-radius: 2px; }
-#accent-picker::-moz-color-swatch { border: none; border-radius: 2px; }
+#accent-picker::-webkit-color-swatch-wrapper { padding: 0; border-radius: 50%; }
+#accent-picker::-webkit-color-swatch { border: none; border-radius: 50%; }
+#accent-picker::-moz-color-swatch { border: none; border-radius: 50%; }
 
 /* hamburger — mobile only */
 .hamburger {

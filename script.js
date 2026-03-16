@@ -14,7 +14,6 @@ hamburger.addEventListener('click', () => {
   drawer.classList.toggle('open');
 });
 
-// close drawer if user clicks outside of it
 document.addEventListener('click', (e) => {
   if (!drawer.contains(e.target) && !hamburger.contains(e.target)) {
     closeDrawer();
@@ -36,15 +35,19 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 const waves = [
-  { amp: 30, freq: 0.010, speed: 0.016, phase: 0.0, yRatio: 0.38, alpha: 0.6,  color: '#e8943a' },
-  { amp: 18, freq: 0.016, speed: 0.022, phase: 1.3, yRatio: 0.50, alpha: 0.35, color: '#c4741f' },
-  { amp: 42, freq: 0.007, speed: 0.010, phase: 2.5, yRatio: 0.62, alpha: 0.18, color: '#f5a84e' },
-  { amp: 14, freq: 0.024, speed: 0.030, phase: 0.8, yRatio: 0.28, alpha: 0.14, color: '#e8943a' },
+  { amp: 30, freq: 0.010, speed: 0.016, phase: 0.0, yRatio: 0.38, alpha: 0.6  },
+  { amp: 18, freq: 0.016, speed: 0.022, phase: 1.3, yRatio: 0.50, alpha: 0.35 },
+  { amp: 42, freq: 0.007, speed: 0.010, phase: 2.5, yRatio: 0.62, alpha: 0.18 },
+  { amp: 14, freq: 0.024, speed: 0.030, phase: 0.8, yRatio: 0.28, alpha: 0.14 },
 ];
+
+function getAccent() {
+  return getComputedStyle(document.documentElement).getPropertyValue('--amber').trim();
+}
 
 function drawWave(w) {
   ctx.beginPath();
-  ctx.strokeStyle = w.color;
+  ctx.strokeStyle = getAccent();
   ctx.globalAlpha = w.alpha;
   ctx.lineWidth   = 1.0;
   const baseY = H * w.yRatio;
@@ -66,7 +69,7 @@ function drawDot(w) {
     + Math.sin(x * w.freq * 2.3 + w.phase * 1.4) * w.amp * 0.35;
   ctx.beginPath();
   ctx.arc(x, y, 2.5, 0, Math.PI * 2);
-  ctx.fillStyle   = w.color;
+  ctx.fillStyle   = getAccent();
   ctx.globalAlpha = w.alpha * 1.6;
   ctx.fill();
   ctx.globalAlpha = 1;
@@ -98,7 +101,9 @@ const observer = new IntersectionObserver((entries) => {
 
 revealEls.forEach(el => observer.observe(el));
 
-/* ── ACCENT COLOR PICKER ───────────────────────── */
+/* ─────────────────────────────────────────────────
+   ACCENT COLOR PICKER
+───────────────────────────────────────────────── */
 const picker = document.getElementById('accent-picker');
 
 function hexToRgb(hex) {
