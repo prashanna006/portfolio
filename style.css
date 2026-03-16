@@ -223,13 +223,15 @@ section:nth-child(even) {
   animation: fadeUp 0.7s 0.15s ease forwards;
 }
 .hero-name {
-  font-size: clamp(2rem, 9vw, 6.5rem);
+  font-size: clamp(1.8rem, 8vw, 6.5rem);
   font-weight: 800;
   line-height: 1.0;
   letter-spacing: -0.025em;
   margin-bottom: 1.6rem;
   opacity: 0;
   animation: fadeUp 0.7s 0.28s ease forwards;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 .hero-name em {
   font-style: normal;
