@@ -97,3 +97,40 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 revealEls.forEach(el => observer.observe(el));
+
+/* ── ACCENT COLOR PICKER ───────────────────────── */
+const picker = document.getElementById('accent-picker');
+
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return { r, g, b };
+}
+function lighten(hex, amount) {
+  const { r, g, b } = hexToRgb(hex);
+  const blend = (c) => Math.round(c + (255 - c) * amount);
+  return `rgb(${blend(r)}, ${blend(g)}, ${blend(b)})`;
+}
+function darken(hex, amount) {
+  const { r, g, b } = hexToRgb(hex);
+  const blend = (c) => Math.round(c * (1 - amount));
+  return `rgb(${blend(r)}, ${blend(g)}, ${blend(b)})`;
+}
+function applyAccent(hex) {
+  const root = document.documentElement;
+  root.style.setProperty('--amber',     hex);
+  root.style.setProperty('--amber-hi',  lighten(hex, 0.15));
+  root.style.setProperty('--amber-lo',  darken(hex, 0.2));
+  root.style.setProperty('--amber-dim', `rgba(${Object.values(hexToRgb(hex)).join(',')}, 0.1)`);
+  localStorage.setItem('accent', hex);
+}
+
+picker.addEventListener('input', (e) => applyAccent(e.target.value));
+
+// restore saved accent on load
+const saved = localStorage.getItem('accent');
+if (saved) {
+  picker.value = saved;
+  applyAccent(saved);
+}

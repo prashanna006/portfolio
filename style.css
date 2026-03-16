@@ -90,6 +90,33 @@ nav {
   color: var(--amber);
 }
 
+.color-picker-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.color-picker-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+#accent-picker {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+#accent-picker::-webkit-color-swatch-wrapper { padding: 0; }
+#accent-picker::-webkit-color-swatch { border: none; border-radius: 50%; }
+#accent-picker::-moz-color-swatch { border: none; border-radius: 50%; }
+
 /* hamburger — mobile only */
 .hamburger {
   display: none;
