@@ -100,14 +100,15 @@ window.addEventListener('scroll', () => {
 /* ─────────────────────────────────────────────────
    SMOOTH SCROLL WITH NAV OFFSET
 ───────────────────────────────────────────────── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (!target) return;
-    e.preventDefault();
-    const top = target.getBoundingClientRect().top + window.scrollY - 70;
-    window.scrollTo({ top, behavior: 'smooth' });
-  });
+document.body.addEventListener('click', function(e) {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (href === '#') return;
+  const target = document.querySelector(href);
+  if (!target) return;
+  e.preventDefault();
+  window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
 });
 
 /* ─────────────────────────────────────────────────
