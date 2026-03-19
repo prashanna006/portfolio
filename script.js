@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 /* ─────────────────────────────────────────────────
    FAVICON — canvas-drawn "ps" monogram
 ───────────────────────────────────────────────── */
@@ -134,3 +136,5 @@ const observer  = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: .1 });
 revealEls.forEach(el => observer.observe(el));
+
+}); // DOMContentLoaded
